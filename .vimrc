@@ -8,6 +8,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
+Plugin 'Blackrush/vim-gocode'
 let g:syntastic_check_on_open=1
 call vundle#end()
 filetype plugin indent on
