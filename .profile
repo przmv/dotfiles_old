@@ -12,7 +12,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
@@ -21,6 +21,19 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# set PATH so it includes user's local bin if it exists
+# (e.g. powerline is installed there)
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+# specify the location of Go workspace
+if [ -d "$HOME/go" ] ; then
+    export GOPATH=$HOME/go
+    PATH="$PATH:$GOPATH/bin"
+fi
+
+# add the App Engine Go SDK directory to PATH
+if [ -d "/opt/google/go_appengine" ] ; then
+    PATH="$PATH:/opt/google/go_appengine"
 fi
