@@ -9,6 +9,11 @@ DOTFILES=$(cd $(dirname $0); pwd -P)
 ln -sb $DOTFILES/.gitconfig $HOME
 
 
+# npm --------------------------------------------------------------------------------
+
+ln -sb $DOTFILES/.npmrc $HOME
+
+
 # powerline --------------------------------------------------------------------------
 
 mkdir -p $HOME/.config

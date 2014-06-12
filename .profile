@@ -37,3 +37,8 @@ fi
 if [ -d "/opt/google/go_appengine" ] ; then
     PATH="$PATH:/opt/google/go_appengine"
 fi
+
+# set PATH so it includes npm bin if it exists
+if [ -d "$HOME/.node/bin" ] ; then
+    PATH="$HOME/.node/bin:$PATH"
+fi
