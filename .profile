@@ -42,3 +42,8 @@ fi
 if [ -d "$HOME/.node/bin" ] ; then
     PATH="$HOME/.node/bin:$PATH"
 fi
+
+# set PATH so it includes ruby gems bin if it exists
+if [ -d "$HOME/.gem/ruby/1.9.1/bin" ] ; then
+    PATH="$HOME/.gem/ruby/1.9.1/bin:$PATH"
+fi

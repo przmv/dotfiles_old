@@ -19,6 +19,9 @@ ln -sb $DOTFILES/.npmrc $HOME
 mkdir -p $HOME/.config
 ln -sb $DOTFILES/.config/powerline $HOME/.config
 
+# ruby gems --------------------------------------------------------------------------
+
+ln -sb $DOTFILES/.gemrc $HOME
 
 # shell ------------------------------------------------------------------------------
 
