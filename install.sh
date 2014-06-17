@@ -4,6 +4,11 @@
 
 DOTFILES=$(cd $(dirname $0); pwd -P)
 
+# editor config ----------------------------------------------------------------------
+
+ln -sb $DOTFILES/.editorconfig $HOME
+
+
 # git --------------------------------------------------------------------------------
 
 ln -sb $DOTFILES/.gitconfig $HOME
