@@ -119,3 +119,9 @@ fi
 if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/petr/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '/home/petr/google-cloud-sdk/completion.bash.inc'
