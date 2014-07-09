@@ -32,6 +32,7 @@ ln -sb $DOTFILES/.gemrc $HOME
 
 ln -sb $DOTFILES/.profile $HOME
 ln -sb $DOTFILES/.bashrc $HOME
+ln -sb $DOTFILES/.bash_aliases $HOME
 
 
 # tmux -------------------------------------------------------------------------------
