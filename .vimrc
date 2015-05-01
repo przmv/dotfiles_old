@@ -6,21 +6,23 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
-Plugin 'Blackrush/vim-gocode'
-let g:syntastic_check_on_open=1
+Plugin 'fatih/vim-go'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-php/tagbar-phpctags.vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'wavded/vim-stylus'
 call vundle#end()
 filetype plugin indent on
 
 " Color scheme
 set t_Co=256
 set background=dark
-colorscheme default
-autocmd VimEnter,Colorscheme * :hi CursorLine ctermbg=236 cterm=none
-autocmd VimEnter,Colorscheme * :hi ColorColumn ctermbg=233 cterm=none
-autocmd VimEnter,Colorscheme * :hi LineNr ctermbg=233 cterm=none
-syntax enable
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid
+syntax on
 
 " Basic options
 set autoindent
@@ -33,7 +35,6 @@ set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:¦\ ,trail:·
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set relativenumber
 set ruler
 set scrolloff=5
@@ -54,7 +55,7 @@ augroup cline
 augroup END
 
 " Tabs, spaces, wrapping
-set tabstop=8
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
@@ -130,9 +131,6 @@ au BufRead,BufNewFile /etc/msmtprc  set ft=msmtp
 " Vim
 au FileType help setlocal textwidth=78
 
-" Go
-au FileType go setlocal noexpandtab softtabstop=0 shiftwidth=8
-
 " C
 au FileType c setlocal noexpandtab softtabstop=0 shiftwidth=8
 
@@ -142,9 +140,6 @@ au BufNewFile,BufRead Pkgfile setlocal filetype=sh noexpandtab softtabstop=0 shi
 " Markdown
 au BufNewFile,BufRead *.md set filetype=markdown
 
-" Poor man's JSON syntax
-au BufNewFile,BufRead *.json setlocal filetype=javascript
-
 " Twig
 au BufNewFile,BufRead *.twig setlocal filetype=htmljinja
 
@@ -152,15 +147,35 @@ au BufNewFile,BufRead *.twig setlocal filetype=htmljinja
 au FileType sh setlocal noexpandtab softtabstop=0 shiftwidth=8
 au BufNewFile,BufRead .mkshrc setlocal filetype=sh
 
-" HTML
-au FileType html setlocal shiftwidth=2 softtabstop=2 expandtab
-
-" JavaScript
-au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
-let g:syntastic_javascript_checkers = ['jshint']
-
-" Coffescript
-au BufNewFile,BufRead *.coffee setlocal shiftwidth=2 softtabstop=2 expandtab
-
-" Powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+" Plugins ---------------------------------------------------------------------------
+let g:neocomplete#enable_at_startup=1
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers=['jshint']
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : '$HOME/.vim-go/gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+nmap <F8> :TagbarToggle<CR>

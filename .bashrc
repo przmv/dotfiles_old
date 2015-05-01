@@ -8,7 +8,7 @@ case $- in
       *) return;;
 esac
 
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -115,13 +115,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Powerline
-if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-fi
-
 # The next line updates PATH for the Google Cloud SDK.
 source '/home/petr/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 source '/home/petr/google-cloud-sdk/completion.bash.inc'
+
+source '/home/petr/.bash_prompt'
