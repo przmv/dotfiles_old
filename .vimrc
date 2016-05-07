@@ -9,20 +9,33 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
 Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'w0ng/vim-hybrid'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'wavded/vim-stylus'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'avakhov/vim-yaml'
+Plugin 'bling/vim-airline'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'lambdalisue/vim-fullscreen'
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'tomasr/molokai'
 call vundle#end()
 filetype plugin indent on
 
 " Color scheme
 set t_Co=256
-set background=dark
-let g:hybrid_use_Xresources = 1
-colorscheme hybrid
-syntax on
+colorscheme molokai
+"if has('gui_running')
+"    set background=light
+"    colorscheme solarized
+"    let g:solarized_visibility="low"
+"    call togglebg#map("<F5>")
+"endif
+syntax enable
 
 " Basic options
 set autoindent
@@ -34,7 +47,7 @@ set equalalways
 set laststatus=2
 set lazyredraw
 set list
-set listchars=tab:¦\ ,trail:·
+set listchars=tab:\ \ ,trail:·
 set relativenumber
 set ruler
 set scrolloff=5
@@ -131,9 +144,6 @@ au BufRead,BufNewFile /etc/msmtprc  set ft=msmtp
 " Vim
 au FileType help setlocal textwidth=78
 
-" C
-au FileType c setlocal noexpandtab softtabstop=0 shiftwidth=8
-
 " Pkgfile
 au BufNewFile,BufRead Pkgfile setlocal filetype=sh noexpandtab softtabstop=0 shiftwidth=8
 
@@ -175,7 +185,33 @@ let g:tagbar_type_go = {
         \ 'ctype' : 't',
         \ 'ntype' : 'n'
     \ },
-    \ 'ctagsbin'  : '$HOME/.vim-go/gotags',
+    \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
 nmap <F8> :TagbarToggle<CR>
+let g:airline_powerline_fonts = 1
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<TAB>" : "\<Plug>(neosnippet_expand_or_jump)"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" Don't analyze Dart files (it's so slow…)
+let g:syntastic_dart_checkers = []
+
+" Check and format JavaScript code style with standard
+let g:syntastic_javascript_checkers = ['standard']
+autocmd bufwritepost *.js silent !standard % --format
+set autoread
