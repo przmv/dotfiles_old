@@ -23,3 +23,11 @@ indent_size = 8
 [*.sh]
 indent_style = tab
 indent_size = 8
+
+[*.c]
+indent_style = tab
+indent_size = 8
+
+[*.dart]
+indent_style = space
+indent_size = 2
