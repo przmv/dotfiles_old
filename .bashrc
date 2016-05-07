@@ -115,10 +115,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Bash prompt
+if [ -f ~/.bash_prompt ]; then
+	. ~/.bash_prompt
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
 source '/home/petr/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 source '/home/petr/google-cloud-sdk/completion.bash.inc'
-
-source '/home/petr/.bash_prompt'
