@@ -1,5 +1,6 @@
 [user]
 	email = petr.shevtsov@gmail.com
 	name = Petr Shevtsov
+	signingkey = 923C66E1
 [push]
 	default = simple
